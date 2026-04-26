@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Advisor</title>
+
+<style>
+/* =========================
+   GLOBAL STYLES
+========================= */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: #fff;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+nav h1 {
+    color: #38bdf8;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+}
+
+.hero p {
+    color: #cbd5f5;
+}
+
+.btn {
+    background: #38bdf8;
+    color: #000;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* =========================
+   SERVICES
+========================= */
+.services {
+    padding: 50px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* =========================
+   QUESTIONNAIRE
+========================= */
+.quiz {
+    padding: 60px 0;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.result {
+    display: none;
+    margin-top: 30px;
+    padding: 20px;
+    background: #1e293b;
+    border-radius: 10px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- =========================
+     NAVBAR
+========================= -->
+<nav>
+    <h1>FinancePro</h1>
+    <div>
+        <a href="#">Home</a>
+        <a href="#quiz">Assessment</a>
+    </div>
+</nav>
+
+<!-- =========================
+     HERO
+========================= -->
+<section class="hero">
+    <h2>Smart Financial Planning Starts Here</h2>
+    <p>Take our quick assessment to understand your investment profile.</p>
+    <button class="btn" onclick="scrollToQuiz()">Start Assessment</button>
+</section>
+
+<!-- =========================
+     SERVICES
+========================= -->
+<section class="services">
+    <div class="card">
+        <h3>Investment Planning</h3>
+        <p>Grow your wealth with tailored strategies.</p>
+    </div>
+    <div class="card">
+        <h3>Retirement Planning</h3>
+        <p>Secure your future with confidence.</p>
+    </div>
+    <div class="card">
+        <h3>Risk Analysis</h3>
+        <p>Understand your financial risk appetite.</p>
+    </div>
+</section>
+
+<!-- =========================
+     QUESTIONNAIRE
+========================= -->
+<section class="quiz" id="quiz">
+    <h2>Risk Assessment</h2>
+
+    <!-- Question 1 -->
+    <div class="question">
+        <p>1. What is your investment horizon?</p>
+        <label><input type="radio" name="q1" value="1"> 0-2 years</label><br>
+        <label><input type="radio" name="q1" value="3"> 3-5 years</label><br>
+        <label><input type="radio" name="q1" value="5"> 5+ years</label>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question">
+        <p>2. How do you react to market drops?</p>
+        <label><input type="radio" name="q2" value="1"> Sell immediately</label><br>
+        <label><input type="radio" name="q2" value="3"> Wait it out</label><br>
+        <label><input type="radio" name="q2" value="5"> Invest more</label>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question">
+        <p>3. Your risk tolerance?</p>
+        <label><input type="radio" name="q3" value="1"> Low</label><br>
+        <label><input type="radio" name="q3" value="3"> Medium</label><br>
+        <label><input type="radio" name="q3" value="5"> High</label>
+    </div>
+
+    <button class="btn" onclick="calculateScore()">Get My Result</button>
+
+    <!-- RESULT -->
+    <div class="result" id="resultBox">
+        <h3 id="resultText"></h3>
+        <button class="btn" id="whatsappBtn">Contact Advisor on WhatsApp</button>
+    </div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+<footer>
+    © 2026 FinancePro. All rights reserved.
+</footer>
+
+</div>
+
+<script>
+/* =========================
+   SCROLL FUNCTION
+========================= */
+function scrollToQuiz() {
+    document.getElementById("quiz").scrollIntoView({ behavior: "smooth" });
+}
+
+/* =========================
+   CALCULATE SCORE
+========================= */
+function calculateScore() {
+    let total = 0;
+
+    let questions = ['q1', 'q2', 'q3'];
+
+    for (let q of questions) {
+        let selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (!selected) {
+            alert("Please answer all questions.");
+            return;
+        }
+        total += parseInt(selected.value);
+    }
+
+    let profile = "";
+
+    if (total <= 5) profile = "Conservative Investor";
+    else if (total <= 10) profile = "Moderate Investor";
+    else profile = "Aggressive Investor";
+
+    document.getElementById("resultText").innerText =
+        `Your Profile: ${profile} (Score: ${total})`;
+
+    document.getElementById("resultBox").style.display = "block";
+
+    /* =========================
+       WHATSAPP MESSAGE
+    ========================= */
+    let message = `Hi, I completed the assessment.%0AProfile: ${profile}%0AScore: ${total}`;
+    
+    let phoneNumber = "27XXXXXXXXX"; // <-- PUT REAL NUMBER HERE
+
+    document.getElementById("whatsappBtn").onclick = function () {
+        window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    };
+}
+</script>
+
+</body>
+</html>
