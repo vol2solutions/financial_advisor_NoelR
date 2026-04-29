@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Financial Consultation</title>
+<title>Financial Assessment</title>
 
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,9 +15,7 @@ body { font-family: Arial; background: #f5f8ff; color: #1f2937; }
   color: white;
 }
 
-.container {
-  padding: 40px 10%;
-}
+.container { padding: 40px 10%; }
 
 .section {
   background: white;
@@ -26,32 +24,33 @@ body { font-family: Arial; background: #f5f8ff; color: #1f2937; }
   border-radius: 10px;
 }
 
+h2 { color: #002f87; margin-bottom: 15px; }
+
+label { font-weight: bold; display: block; margin-top: 10px; }
+
 input, select {
   width: 100%;
   padding: 10px;
-  margin-top: 8px;
-  margin-bottom: 15px;
+  margin-top: 6px;
   border-radius: 6px;
   border: 1px solid #d1d5db;
 }
 
 button {
+  width: 100%;
+  padding: 14px;
   background: #002f87;
   color: white;
-  padding: 12px;
   border: none;
   border-radius: 6px;
+  font-weight: bold;
   cursor: pointer;
-  width: 100%;
 }
-
-h2 { margin-bottom: 10px; color: #002f87; }
-label { font-weight: bold; }
 
 .result {
   margin-top: 20px;
-  font-weight: bold;
   font-size: 1.2rem;
+  font-weight: bold;
 }
 </style>
 </head>
@@ -59,19 +58,19 @@ label { font-weight: bold; }
 <body>
 
 <div class="header">
-  <h1>Free Financial Consultation</h1>
-  <p>Complete this short assessment to help us understand your financial needs. One of our advisors will contact you.</p>
+  <h1>Financial Assessment</h1>
+  <p>Help us understand your financial position so we can prepare a tailored plan for you.</p>
 </div>
 
 <div class="container">
 
-<form id="quizForm">
+<form id="form">
 
-<!-- ===== USER INFO ===== -->
+<!-- ===== PERSONAL ===== -->
 <div class="section">
-  <h2>Your Details</h2>
+  <h2>Personal & Household</h2>
 
-  <label>Name</label>
+  <label>Full Name</label>
   <input type="text" id="name" required>
 
   <label>Email</label>
@@ -79,64 +78,114 @@ label { font-weight: bold; }
 
   <label>Phone</label>
   <input type="tel" id="phone" required>
+
+  <label>Number of dependents</label>
+  <select id="dependents">
+    <option value="10">0</option>
+    <option value="8">1–2</option>
+    <option value="5">3–4</option>
+    <option value="2">5+</option>
+  </select>
 </div>
 
-<!-- ===== FINANCIAL SITUATION ===== -->
+<!-- ===== INCOME ===== -->
 <div class="section">
-  <h2>Financial Situation</h2>
+  <h2>Income & Household</h2>
 
-  <label>Employment Status</label>
+  <label>Employment status</label>
   <select id="employment">
     <option value="10">Full-time employed</option>
-    <option value="7">Self-employed</option>
-    <option value="4">Part-time</option>
+    <option value="8">Self-employed</option>
+    <option value="5">Part-time</option>
     <option value="2">Unemployed</option>
   </select>
 
-  <label>Do you save monthly?</label>
-  <select id="savings">
-    <option value="10">Yes, consistently</option>
-    <option value="5">Sometimes</option>
-    <option value="1">No</option>
+  <label>Your monthly income range</label>
+  <select id="income">
+    <option value="2">Below R5,000</option>
+    <option value="4">R5,000 – R15,000</option>
+    <option value="6">R15,000 – R30,000</option>
+    <option value="8">R30,000 – R60,000</option>
+    <option value="10">R60,000+</option>
+  </select>
+
+  <label>Total household income</label>
+  <select id="householdIncome">
+    <option value="2">Below R10,000</option>
+    <option value="4">R10,000 – R25,000</option>
+    <option value="6">R25,000 – R50,000</option>
+    <option value="8">R50,000 – R100,000</option>
+    <option value="10">R100,000+</option>
   </select>
 </div>
 
-<!-- ===== INVESTMENT READINESS ===== -->
+<!-- ===== ASSETS ===== -->
 <div class="section">
-  <h2>Investment Readiness</h2>
-
-  <label>Risk Tolerance</label>
-  <select id="risk">
-    <option value="10">High (Growth focused)</option>
-    <option value="7">Medium</option>
-    <option value="4">Low</option>
-  </select>
+  <h2>Investments & Assets</h2>
 
   <label>Do you currently invest?</label>
-  <select id="invest">
-    <option value="10">Yes</option>
-    <option value="3">No</option>
+  <select id="investments">
+    <option value="10">Yes – actively investing</option>
+    <option value="6">Yes – but irregular</option>
+    <option value="2">No investments</option>
+  </select>
+
+  <label>Types of investments (if any)</label>
+  <select id="investmentType">
+    <option value="10">Unit trusts / diversified portfolio</option>
+    <option value="8">Retirement annuity / pension</option>
+    <option value="6">Stocks / shares</option>
+    <option value="4">Property</option>
+    <option value="2">None</option>
+  </select>
+
+  <label>Do you have emergency savings?</label>
+  <select id="savings">
+    <option value="10">Yes (3–6 months covered)</option>
+    <option value="6">Some savings</option>
+    <option value="2">No savings</option>
   </select>
 </div>
 
-<!-- ===== INTENT ===== -->
+<!-- ===== DEBT ===== -->
 <div class="section">
-  <h2>Financial Goals</h2>
+  <h2>Debt & Financial Pressure</h2>
 
-  <label>When do you need financial advice?</label>
-  <select id="urgency">
-    <option value="10">Immediately</option>
-    <option value="7">Within 3 months</option>
-    <option value="4">6–12 months</option>
-    <option value="1">Just exploring</option>
+  <label>Debt level</label>
+  <select id="debt">
+    <option value="10">No debt</option>
+    <option value="7">Low manageable debt</option>
+    <option value="4">Moderate debt</option>
+    <option value="1">High debt pressure</option>
   </select>
 
-  <label>Main goal</label>
+  <label>Monthly financial stress level</label>
+  <select id="stress">
+    <option value="10">Low stress</option>
+    <option value="6">Moderate stress</option>
+    <option value="3">High stress</option>
+  </select>
+</div>
+
+<!-- ===== GOALS ===== -->
+<div class="section">
+  <h2>Goals & Intent</h2>
+
+  <label>Main financial goal</label>
   <select id="goal">
-    <option value="10">Wealth growth</option>
-    <option value="7">Retirement planning</option>
-    <option value="5">Insurance</option>
+    <option value="10">Wealth building</option>
+    <option value="8">Retirement planning</option>
+    <option value="6">Insurance / protection</option>
+    <option value="5">Debt management</option>
     <option value="3">General advice</option>
+  </select>
+
+  <label>How soon do you need advice?</label>
+  <select id="urgency">
+    <option value="10">Immediately</option>
+    <option value="7">Within 1–3 months</option>
+    <option value="5">3–6 months</option>
+    <option value="2">Just exploring</option>
   </select>
 </div>
 
@@ -148,39 +197,41 @@ label { font-weight: bold; }
 </div>
 
 <script>
-document.getElementById("quizForm").addEventListener("submit", function(e) {
+document.getElementById("form").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  // user info
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const phone = document.getElementById("phone").value;
 
-  // scoring
   let score =
+    parseInt(document.getElementById("dependents").value) +
     parseInt(document.getElementById("employment").value) +
+    parseInt(document.getElementById("income").value) +
+    parseInt(document.getElementById("householdIncome").value) +
+    parseInt(document.getElementById("investments").value) +
+    parseInt(document.getElementById("investmentType").value) +
     parseInt(document.getElementById("savings").value) +
-    parseInt(document.getElementById("risk").value) +
-    parseInt(document.getElementById("invest").value) +
-    parseInt(document.getElementById("urgency").value) +
-    parseInt(document.getElementById("goal").value);
+    parseInt(document.getElementById("debt").value) +
+    parseInt(document.getElementById("stress").value) +
+    parseInt(document.getElementById("goal").value) +
+    parseInt(document.getElementById("urgency").value);
 
   let status = "";
 
-  if (score >= 70) status = "🔥 HOT LEAD";
-  else if (score >= 40) status = "🟠 WARM LEAD";
+  if (score >= 90) status = "🔥 HOT LEAD";
+  else if (score >= 60) status = "🟠 WARM LEAD";
   else status = "❄️ COLD LEAD";
 
   document.getElementById("result").innerHTML =
-    `Score: ${score}/60<br>Status: ${status}`;
+    `Score: ${score}/110<br>Status: ${status}`;
 
-  // WhatsApp message
   const message =
-`New Financial Lead:
+`Financial Lead:
 Name: ${name}
 Email: ${email}
 Phone: ${phone}
-Score: ${score}/60
+Score: ${score}/110
 Status: ${status}`;
 
   const phoneNumber = "277XXXXXXXXX";
