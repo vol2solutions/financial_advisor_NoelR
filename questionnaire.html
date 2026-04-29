@@ -61,6 +61,17 @@ button {
   <h1>Financial Assessment</h1>
   <p>Help us understand your financial position so we can prepare a tailored plan for you.</p>
 </div>
+  
+<div style="padding: 20px 10%; background: #ffffff; border-bottom: 1px solid #e5e7eb;">
+<a href="index.html" style="
+  color: #002f87;
+  text-decoration: none;
+  font-weight: bold;
+">
+  ← Back to Home
+</a>
+  
+</div>
 
 <div class="container">
 
@@ -200,10 +211,28 @@ button {
 document.getElementById("form").addEventListener("submit", function(e) {
   e.preventDefault();
 
+  // ===== USER INFO =====
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const phone = document.getElementById("phone").value;
 
+  // ===== ANSWERS (TEXT) =====
+  const dependents = document.getElementById("dependents").selectedOptions[0].text;
+  const employment = document.getElementById("employment").selectedOptions[0].text;
+  const income = document.getElementById("income").selectedOptions[0].text;
+  const householdIncome = document.getElementById("householdIncome").selectedOptions[0].text;
+
+  const investments = document.getElementById("investments").selectedOptions[0].text;
+  const investmentType = document.getElementById("investmentType").selectedOptions[0].text;
+  const savings = document.getElementById("savings").selectedOptions[0].text;
+
+  const debt = document.getElementById("debt").selectedOptions[0].text;
+  const stress = document.getElementById("stress").selectedOptions[0].text;
+
+  const goal = document.getElementById("goal").selectedOptions[0].text;
+  const urgency = document.getElementById("urgency").selectedOptions[0].text;
+
+  // ===== SCORE =====
   let score =
     parseInt(document.getElementById("dependents").value) +
     parseInt(document.getElementById("employment").value) +
@@ -223,19 +252,44 @@ document.getElementById("form").addEventListener("submit", function(e) {
   else if (score >= 60) status = "🟠 WARM LEAD";
   else status = "❄️ COLD LEAD";
 
-  document.getElementById("result").innerHTML =
-    `Score: ${score}/110<br>Status: ${status}`;
-
+  // ===== WHATSAPP MESSAGE =====
   const message =
-`Financial Lead:
+`🧾 NEW FINANCIAL LEAD
+
+📊 SCORE: ${score}/110
+STATUS: ${status}
+
+👤 PERSONAL
 Name: ${name}
 Email: ${email}
 Phone: ${phone}
-Score: ${score}/110
-Status: ${status}`;
+Dependents: ${dependents}
 
-  const phoneNumber = "27798526921";
-  window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`);
+💼 INCOME
+Employment: ${employment}
+Personal Income: ${income}
+Household Income: ${householdIncome}
+
+📈 INVESTMENTS
+Current Investments: ${investments}
+Investment Type: ${investmentType}
+Savings: ${savings}
+
+💳 DEBT & STRESS
+Debt Level: ${debt}
+Financial Stress: ${stress}
+
+🎯 GOALS
+Goal: ${goal}
+Urgency: ${urgency}
+`;
+
+  const phoneNumber = "277XXXXXXXXX";
+
+  window.open(
+    `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
 });
 </script>
 
