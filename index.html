@@ -146,9 +146,26 @@ button {
   margin-top: 40px;
   gap: 20px;
 }
+  
 .step {
   flex: 1;
-  padding: 20px;
+  padding: 25px;
+  text-align: center;
+}
+
+.step .icon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.step h3 {
+  margin-bottom: 10px;
+  color: #002f87;
+}
+
+.step p {
+  font-size: 0.9rem;
+  color: #6b7280;
 }
 
 /* ===== CTA ===== */
@@ -261,10 +278,31 @@ footer {
 <section id="process" class="process">
   <h2>How It Works</h2>
   <div class="process-steps">
-    <div class="step">1. Submit Your Details</div>
-    <div class="step">2. Free Consultation</div>
-    <div class="step">3. Custom Financial Plan</div>
-    <div class="step">4. Ongoing Support</div>
+
+    <div class="step">
+      <div class="icon">📝</div>
+      <h3>Submit Your Details</h3>
+      <p>Complete our quick form so we can understand your financial goals and needs.</p>
+    </div>
+
+    <div class="step">
+      <div class="icon">📞</div>
+      <h3>Free Consultation</h3>
+      <p>We’ll contact you to discuss your situation and answer any initial questions.</p>
+    </div>
+
+    <div class="step">
+      <div class="icon">📊</div>
+      <h3>Custom Financial Plan</h3>
+      <p>Receive a tailored strategy aligned with your goals, risk profile, and timeline.</p>
+    </div>
+
+    <div class="step">
+      <div class="icon">🤝</div>
+      <h3>Ongoing Support</h3>
+      <p>We provide continuous guidance and adjustments as your life and goals evolve.</p>
+    </div>
+
   </div>
 </section>
 
@@ -294,7 +332,7 @@ Phone: ${data[2]}%0A
 Goal: ${data[3]}`;
 
   // Replace with advisor WhatsApp number
-  const phone = "277XXXXXXXXX";
+  const phone = "27798526921";
 
   window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
 });
